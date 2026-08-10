@@ -1,0 +1,556 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =======================
+SIDEBAR
+======================= */
+
+
+/* ===========================
+   SIDEBAR COLLAPSE
+=========================== */
+
+
+/* User */
+/*#sidebar.collapsed .user-info{
+    display:none;
+}
+/* =========================
+   USER INFO COLLAPSE
+========================= */
+
+.sidebar.collapsed .user-name,
+.sidebar.collapsed .user-role{
+    display:none;
+}
+
+.sidebar.collapsed .logout-btn span{
+    display:none;
+}
+
+.sidebar.collapsed .logout-btn{
+    width:48px;
+    height:48px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+}
+
+.sidebar.collapsed .user-avatar{
+    display:flex;
+    justify-content:center;
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.user-info{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:10px;
+
+    border-radius:12px;
+
+    transition:.3s;
+    cursor:pointer;
+}
+
+.user-info:hover{
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+}
+
+/* Logout */
+
+.logout-btn{
+    transition:.3s;
+}
+
+.sidebar.collapsed .logout-btn span{
+    display:none;
+}
+
+.sidebar.collapsed .logout-btn{
+    padding:10px;
+}
+
+.sidebar.collapsed .logout-btn i{
+    margin:0;
+}
+
+/* ===========================
+   ICE CREAM FIRDA POS
+=========================== */
+
+body{
+    background:#F5F7FB;
+}
+
+/* Wrapper */
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:#1F3A5F;
+
+    display:flex;
+
+    flex-direction:column;
+
+    color:#fff;
+
+    overflow:hidden;
+
+    transition:width .3s ease;
+
+    z-index:1000;
+
+}
+
+/* Header */
+
+.sidebar-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:25px;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.logo{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:#59C3C3;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+}
+
+.sidebar-header h4{
+
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:700;
+}
+
+.sidebar-header small{
+
+    color:#d7d7d7;
+}
+
+/* Menu */
+
+.sidebar-menu{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+
+.sidebar-menu li{
+
+    margin-bottom:8px;
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.sidebar-menu a:hover{
+
+    background:#2F527D;
+}
+
+.sidebar-menu a.active{
+
+    background:#59C3C3;
+
+    color:#fff;
+
+    font-weight:600;
+}
+
+.sidebar-menu i{
+
+    width:22px;
+
+    text-align:center;
+}
+
+/* Footer */
+
+.sidebar-footer{
+
+    padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    flex-shrink:0;
+
+}
+
+.avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:#59C3C3;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+}
+
+.user-info small{
+
+    color:#ddd;
+
+    display:block;
+}
+
+/* Logout */
+
+.logout-btn{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#dc3545;
+
+    color:white;
+
+    padding:12px;
+
+    transition:.3s;
+}
+
+.logout-btn:hover{
+
+    background:#bb2d3b;
+}
+
+.main-content{
+
+    margin-left:260px;
+
+    width:calc(100% - 260px);
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.content-wrapper{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:30px;
+
+}
+footer{
+
+    flex-shrink:0;
+
+    background:#fff;
+
+    border-top:1px solid #e8e8e8;
+
+    padding:18px;
+
+    text-align:center;
+
+}
+
+.sidebar.collapsed{
+
+    width:80px;
+
+}
+
+.main-content.expanded{
+
+    margin-left:80px;
+
+    width:calc(100% - 80px);
+
+}
+/* ===== COLLAPSE SIDEBAR ===== */
+
+.sidebar{
+
+    transition:.3s;
+
+}
+
+.sidebar-header{
+
+    transition:.3s;
+
+}
+
+.sidebar-menu span,
+
+.user-info strong,
+
+.user-info small,
+
+.logout-btn span{
+
+    transition:.3s;
+
+}
+
+.sidebar.collapsed .sidebar-header{
+
+    justify-content:center;
+
+    padding:20px 10px;
+
+}
+.sidebar.collapsed .logo{
+
+    margin:auto;
+
+}
+
+.sidebar.collapsed .sidebar-header h4,
+
+.sidebar.collapsed .sidebar-header small{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .sidebar-menu span{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .sidebar-menu a{
+
+    justify-content:center;
+
+    padding:15px 0;
+
+}
+.sidebar.collapsed .sidebar-menu i{
+
+    margin:0;
+
+    width:auto;
+
+    font-size:20px;
+
+}
+
+.sidebar.collapsed .sidebar-footer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.sidebar.collapsed .user-info{
+
+    justify-content:center;
+    padding:10px 0;
+}
+
+.sidebar.collapsed .user-info strong,
+
+.sidebar.collapsed .user-info small{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .logout-btn{
+
+    width:48px;
+
+    height:48px;
+
+    padding:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.sidebar.collapsed .logout-btn span{
+
+    display:none;
+
+}
+
+/* ==========================
+   PRODUCT CARD
+========================== */
+
+.product-image{
+
+    width:100%;
+
+    height:180px;
+
+    object-fit:cover;
+
+    object-position:center;
+
+}
+
+.product-card{
+
+    transition:.2s;
+
+    cursor:pointer;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+
+}
+
+@media (min-width:992px){
+
+    .cart-card{
+
+        position:sticky;
+
+        top:90px;
+
+    }
+
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar{
+
+    background:#fff;
+
+    border-bottom:1px solid #e9ecef;
+
+    flex-shrink:0;
+
+}
+
+/* ==========================
+   HALAMAN KASIR
+========================== */
+
+@media (min-width:992px){
+
+    .cashier-products,
+    .cashier-cart{
+        height:calc(100vh - 170px);
+    }
+
+    .cashier-products > .card,
+    .cashier-cart > .card{
+        height:100%;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .cashier-products .card-body,
+    .cashier-cart .card-body{
+        flex:1;
+        overflow-y:auto;
+    }
+
+    .cart-card .card-footer{
+        flex-shrink:0;
+    }
+
+}

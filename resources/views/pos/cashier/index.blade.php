@@ -40,30 +40,40 @@
 
                 <div class="card-header bg-white">
 
-                    <div class="row">
+                <form action="{{ route('cashier') }}" method="GET">
 
-                        <div class="col-md-8">
+                    <div class="row g-2">
+
+                        <div class="col-md-7">
 
                             <input
                                 type="text"
+                                name="search"
+                                value="{{ request('search') }}"
                                 class="form-control"
-                                placeholder="Cari produk...">
+                                placeholder="Cari kode, kemasan, atau rasa">
 
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
 
-                            <select class="form-select">
+                            <select
+                                name="sale_type"
+                                class="form-select">
 
-                                <option>
+                                <option value="">
                                     Semua Jenis
                                 </option>
 
-                                <option value="eceran">
+                                <option
+                                    value="eceran"
+                                    {{ request('sale_type') == 'eceran' ? 'selected' : '' }}>
                                     Eceran
                                 </option>
 
-                                <option value="mitra">
+                                <option
+                                    value="mitra"
+                                    {{ request('sale_type') == 'mitra' ? 'selected' : '' }}>
                                     Mitra Warung
                                 </option>
 
@@ -71,7 +81,22 @@
 
                         </div>
 
+                        <div class="col-md-2">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary w-100">
+
+                                <i class="fas fa-search"></i>
+                                Filter
+
+                            </button>
+
+                        </div>
+
                     </div>
+
+                </form>
 
                 </div>
 
@@ -89,7 +114,10 @@
 
                                     <img
                                         src="{{ asset('storage/'.$product->image) }}"
-                                        class="card-img-top product-image">
+                                        class="card-img-top product-image"
+                                        loading="lazy"
+                                        decoding="async"
+                                        alt="{{ $product->package->name }} - {{ $product->flavor->name }}">
 
                                     @endif
 

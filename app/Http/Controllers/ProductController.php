@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 
 class ProductController extends Controller
 {
@@ -112,9 +115,24 @@ class ProductController extends Controller
 
         $image = null;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('products', 'public');
-        }
+if ($request->hasFile('image')) {
+
+    $manager = new ImageManager(new Driver());
+
+    $img = $manager->read($request->file('image'));
+
+    // Batasi ukuran maksimal tanpa merusak tampilan
+    $img->scaleDown(width: 1200, height: 1200);
+
+    $filename = 'products/' . uniqid('product_') . '.webp';
+
+    Storage::disk('public')->put(
+        $filename,
+        $img->toWebp(quality: 82)
+    );
+
+    $image = $filename;
+}
 
         $lastProduct = Product::latest('id')->first();
 
@@ -152,16 +170,25 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
 
-            if ($product->image) {
+    if ($product->image) {
+        Storage::disk('public')->delete($product->image);
+    }
 
-                \Storage::disk('public')->delete($product->image);
+    $manager = new ImageManager(new Driver());
 
-            }
+    $img = $manager->read($request->file('image'));
 
-            $product->image = $request
-                ->file('image')
-                ->store('products', 'public');
-        }
+    $img->scaleDown(width: 1200, height: 1200);
+
+    $filename = 'products/' . uniqid('product_') . '.webp';
+
+    Storage::disk('public')->put(
+        $filename,
+        $img->toWebp(quality: 82)
+    );
+
+    $product->image = $filename;
+}
 
         $product->update([
             'price' => $request->price,

@@ -218,7 +218,11 @@
                                 <img
                                     src="{{ asset('storage/'.$product->image) }}"
                                     width="60"
-                                    class="rounded">
+                                    height="60"
+                                    class="rounded"
+                                    loading="lazy"
+                                    decoding="async"
+                                    alt="{{ $product->package->name }} - {{ $product->flavor->name }}">
 
                             @else
 

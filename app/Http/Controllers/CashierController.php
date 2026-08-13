@@ -11,11 +11,37 @@ use Illuminate\Support\Facades\Auth;
 
 class CashierController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::with(['package','flavor'])
             ->where('status', true)
-            ->where('stock', '>', 0)
+            ->where('stock', '>', 0);
+
+        if ($request->filled('search')) {
+
+            $search = $request->search;
+
+            $products->where(function ($q) use ($search) {
+
+                $q->where('code', 'like', "%{$search}%")
+                    ->orWhereHas('package', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    })
+                    ->orWhereHas('flavor', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    });
+
+            });
+
+        }
+
+        if ($request->filled('sale_type')) {
+
+            $products->where('sale_type', $request->sale_type);
+
+        }
+
+        $products = $products
             ->latest()
             ->get();
 

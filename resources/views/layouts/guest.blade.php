@@ -25,7 +25,7 @@
 
 <body class="font-sans antialiased">
 
-<div class="min-h-screen d-flex justify-center items-center bg-gradient-to-br from-blue-100 to-blue-200">
+<div class="min-h-screen flex items-center justify-center px-4 py-8 bg-gradient-to-br from-blue-100 to-blue-200">
 
     <div class="w-full max-w-md">
 
